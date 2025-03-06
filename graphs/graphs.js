@@ -81,5 +81,66 @@ class Graph {
         }
         return result;
     }
+
+    dfs(adjacencyList, vertex, visited) {
+        console.log(vertex)
+        visited[vertex] = true
+        for(let i = 0; i < adjacencyList[vertex].length; i++) {
+            if(!visited[adjacencyList[vertex][i]]) {
+                this.dfs(adjacencyList, adjacencyList[vertex][i], visited)
+            }
+        }
+    }
+
+    checkCycleInUndirectedGraph(vertex) {
+        let visited = {}
+        let adjacencyList = this.adjacencyList
+        function isCyclic(vertex, parent) {
+            visited[vertex] = true
+            for(let i=0; i< adjacencyList[vertex].length; i++) {
+                let v= adjacencyList[vertex][i]
+                if(!visited[v]) {
+                    if(isCyclic(v, vertex)) {
+                        return true
+                    }
+                } else {
+                    if(visited[v] && v !== parent) {
+                        return true
+                    }
+                }
+            }
+            return false
+        }
+        return isCyclic(vertex, -1)
+        
+    }
+
+    checkCycleInDirectedGraph(n) {
+        let visited = {}
+        let path = {}
+        let adjacencyList = this.adjacencyList
+        for(let node =0; node< n; node++) {
+            if(!visited[node]) {
+                if(isCyclic(node, path)) {
+                    return true
+                }
+            }
+        }
+        function isCyclic(node, path) {
+            visited[node] = true
+            path[node] = true
+            for(let neighbour of node) {
+                if(!visited[neighbour]) {
+                    if(isCyclic(neighbour, path)) {
+                        return true
+                    }
+                } else if(path[neighbour]) {
+                    return true
+                }
+            }
+            path[node] = false
+            return false
+        }
+    }
 }
 

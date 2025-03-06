@@ -1,6 +1,12 @@
+// const array = [48, 12, 24, 7, 8, -5, 24, 391, 24, 56, 2, 6, 8, 41]
+
 class MinHeap {
     constructor(array) {
       this.heap = this.buildHeap(array);
+    }
+
+    size() {
+      return this.heap.length
     }
   
     buildHeap(array) {
@@ -58,7 +64,7 @@ class MinHeap {
   
     insert(value) {
       // Write your code here.
-     this.heap.push(value)
+      this.heap.push(value)
       this.siftUp(this.heap.length -1, this.heap)
     }
   
@@ -68,6 +74,13 @@ class MinHeap {
       heap[j] = temp
     }
   }
+
+  const array = [48, 12, 24, 7, 8, -5, 24, 391, 24, 56, 2, 6, 8, 41]
+  const minHeap = new MinHeap(array)
+  console.log(minHeap)
+  minHeap.insert(76)
+  console.log(minHeap)
+
   
   // Do not edit the line below.
   exports.MinHeap = MinHeap;

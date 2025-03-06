@@ -66,6 +66,8 @@ class BinarySearchTree {
         }
         return data
     }
+    // TC - O(N)
+    //SC - O(N)
     DFSPreOrder() {
         let data = []
         let current = this.root
@@ -101,6 +103,9 @@ class BinarySearchTree {
         return data 
     }
 
+    //Preorder, inorder, postorder traversal in single code
+    // Video - https://www.youtube.com/watch?v=ySp2epYvgTE&list=PLgUwDviBIf0q8Hkd7bK2Bpryj2xVJk8Vk&index=14
+
     heightOfTree() {
         let height = -1
         let queue = []
@@ -116,5 +121,15 @@ class BinarySearchTree {
             }
         }
         return height
+    }
+
+    //TC - O(n)
+    //SC - O(n)
+    heightOfTreeRec(root) {
+        if(root === null) return 
+        let heightOfLeft = heightOfTreeRec(root.left)
+        let heightOfright = heightOfTreeRec(root.right)
+
+        return Math.max(heightOfLeft, heightOfright) + 1
     }
 }

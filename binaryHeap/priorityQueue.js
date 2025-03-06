@@ -1,3 +1,4 @@
+ //min priority queue
  class Node {
     constructor(val, priority) {
         this.val = val
@@ -11,7 +12,7 @@ class PriorityQueue {
     enqueue(val, priority) {
         let newNode = new Node(val, priority)
         this.values.push(newNode)
-        //bubble up -> check if the new added value is larger than its parent. if so, bubble it up untill it finds its position
+        //bubble up -> check if the new added value is larger than its parent. if so, bubble it up until it finds its position
         let arrayLength = this.values.length
         let idx = arrayLength - 1
         let insertedElement = this.values[idx]
@@ -19,7 +20,7 @@ class PriorityQueue {
             let parentInx = Math.floor((idx -1)/2)
             let parent = this.values[parentInx]
             if(parent.priority <= insertedElement.priority) break;
-            this.values[parentInx] = element
+            this.values[parentInx] = insertedElement
             this.values[idx] = parent
             idx = parentInx
         }
